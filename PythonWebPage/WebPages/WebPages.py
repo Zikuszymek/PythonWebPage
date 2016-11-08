@@ -43,4 +43,7 @@ def GetPriceFromString(priceString):
 
 	return priceString
 
+def CreateSingleDictionary(productName, oldPrice, newPrice, imgUrl, productUrl):
+	dictionary = {'productName' : productName , 'oldPrice' : oldPrice , 'newPrice' : newPrice , 'imgUrl' : imgUrl , 'productUrl' : productUrl}
+	return dictionary
 
