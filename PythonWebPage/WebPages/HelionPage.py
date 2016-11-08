@@ -11,25 +11,22 @@ class HelionPage(WebPage.WebPages):
 	def GetWebPageData(self):
 		try:
 			soup = BeautifulSoup(self.html, 'html.parser')
-			hotShotDiv = soup.select("#hotShot")[0]
-			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
+			self.productUrl = soup.select(".promotion-book a")[0].get("href")
+			hotShotSoup = WebPage.GetParsedSoupFromURL(self.productUrl)
 
-			#self.productName = hotShotSoup.select(".product-name")[0].text
+			self.productName = hotShotSoup.select(".book-details h1")[0].text
 
-			#self.oldPrice = hotShotSoup.select(".old-price")[0].text
-			#self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
+			self.oldPrice = hotShotSoup.select(".book-type-price del")[0].text
+			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
 
-			#self.newPrice = hotShotSoup.select(".new-price")[0].text
-			#self.newPrice = WebPage.GetPriceFromString(self.newPrice)
-		
-			#self.productUrl = self.webUrl
+			self.newPrice = hotShotSoup.select(".book-type-price ins")[0].text
+			self.newPrice = WebPage.GetPriceFromString(self.newPrice)
 
-			#self.imgUrl = hotShotSoup.select(".img-responsive")[0]
-			#self.imgUrl = self.imgUrl.get('src')
+			self.imgUrl = hotShotSoup.select(".book-details .cover-col img")[0].get("src")
 
-		#except Exception as ex:
-			#self.oldPrice = "0"
-			#self.newPrice = "0"
-			#self.productName = "-"
-			#self.productUrl = "-"
-			#self.imgUrl = "-"
+		except Exception as ex:
+			self.oldPrice = "0"
+			self.newPrice = "0"
+			self.productName = "-"
+			self.productUrl = "-"
+			self.imgUrl = "-"

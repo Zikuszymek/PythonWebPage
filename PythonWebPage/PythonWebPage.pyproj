@@ -22,13 +22,28 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MySQL\Alchemy.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MySQL\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PythonWebPage.py" />
+    <Compile Include="WebPages\OnePressPage.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WebPages\HelionPage.py" />
     <Compile Include="WebPages\KomputronikPage.py" />
     <Compile Include="WebPages\MallPage.py" />
     <Compile Include="WebPages\MorelePage.py" />
     <Compile Include="WebPages\ProlinePage.py" />
     <Compile Include="WebPages\SatysfakcjaPage.py" />
+    <Compile Include="WebPages\SensusPage.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WebPages\SeptemPage.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WebPages\WebPages.py">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +53,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="MySQL\" />
     <Folder Include="WebPages\" />
   </ItemGroup>
   <PropertyGroup>
