@@ -1,26 +1,48 @@
-import webPage
+import WebPages.WebPages as WebPage
 from bs4 import BeautifulSoup
 
-class SatysfakcjaPage(webPage.WebPage):
+class MallPage(WebPage.WebPages):
 
-    webPageUrl = 'http://www.satysfakcja.pl/'
+	webPageUrl = 'https://www.mall.pl/'
 
-    def GetWebPageData(self):
-       soup = BeautifulSoup(self.html, 'html.parser')
-       hotShotDiv = soup.select("#hotShot")[0]
-       hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
+	def __init__(self):
+		WebPage.WebPages.__init__(self, MallPage.webPageUrl)
 
-       productName = hotShotSoup.select(".product-name")[0].text
+	def GetWebPageData(self):
 
-       oldPrice = hotShotSoup.select(".old-price")[0].text
-       oldPrice = webPage.GetPriceFromString(oldPrice)
+			list = []
+		
+			soup = BeautifulSoup(self.html, 'html.parser')
+			hotShotDiv = soup.select(".deal-wrapper")[0]
+			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
 
-       newPrice = hotShotSoup.select(".new-price")[0].text
-       newPrice = webPage.GetPriceFromString(newPrice)
+			productList = hotShotSoup.select('.deal-item')
 
-       productUrl = self.webUrl
+			for element in productList:
+				soupElement = BeautifulSoup(str(element),'html.parser')
+				
+				if soupElement.find('a'):
+					try:
+						self.productName = soupElement.select('a')[1].text
 
-       imgUrl = hotShotSoup.select(".img-responsive")[0]
-       imgUrl = imgUrl.get('src')
-       print(imgUrl)
-        
+						self.oldPrice = soupElement.select("del")[0].text
+						self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
+
+						self.newPrice = soupElement.select(".deal-price")[0].text
+						self.newPrice = WebPage.GetPriceFromString(self.newPrice)
+	
+						self.productUrl = 'https://www.mall.pl' + soupElement.select('a')[1].get('href')
+
+						self.imgUrl = soupElement.select('a img')[0].get('data-src')
+
+					except Exception as ex:
+						self.oldPrice = "0"
+						self.newPrice = "0"
+						self.productName = "-"
+						self.productUrl = "-"
+						self.imgUrl = "-"
+
+					oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+					list.append(oneElement)
+
+			return list

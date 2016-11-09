@@ -1,16 +1,19 @@
 import WebPages.WebPages as WebPage
 from bs4 import BeautifulSoup
 
-class OnePressPage(WebPage.WebPages):
+class IBoodPage(WebPage.WebPages):
 
-	webPageUrl = 'https://www.mall.pl/'
+	webPageUrl = 'http://www.ibood.com/pl/pl/'
+	webPageUrl2 = 'http://www.ibood.com/home-living-pl/pl/'
+	webPageUrl3 = 'http://www.ibood.com/sports-fashion-pl/pl/'
+	webPAgeUrl4	= 'http://www.ibood.com/extra-pl/pl/'
 
 	def __init__(self):
 		WebPage.WebPages.__init__(self, IBoodPage.webPageUrl)
 
 	def GetWebPageData(self):
 
-		hotShotPageList = (OnePressPage.webPageUrl)
+		hotShotPageList = (IBoodPage.webPageUrl, IBoodPage.webPageUrl2, IBoodPage.webPageUrl3, IBoodPage.webPAgeUrl4)
 		list = []
 
 		for webPageElement in hotShotPageList:
@@ -38,7 +41,7 @@ class OnePressPage(WebPage.WebPages):
 				self.productUrl = "-"
 				self.imgUrl = "-"
 
-				oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
-				list.append(oneElement)
+			oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+			list.append(oneElement)
 
 		return list

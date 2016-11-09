@@ -1,11 +1,17 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
 
 def ConnectToDB():
-	dbAdress = "mysql+pymysql://ziku_hotshot:moniqe21@ziku.ayz.pl:3306"
-	engine = create_engine(dbAdress)
-	connection = engine.connect()
-	result = connection.execute("SELECT * FROM ziku_hotshot.web_pages")
-	for row in result:
-		print(row)
+
+	Base = automap_base()
+	dbAdress = 'mysql+pymysql://ziku_hotshot:moniqe21@ziku.ayz.pl:3306/ziku_hotshot'
+	engine = create_engine(dbAdress,echo=True)
+
+	Base.prepare(engine, reflect=True)
+
+	WebPages = Base.classes.web_pages
+	WebPagesCategory = Base.classes.web_page_category
+	HotShotList = Base.classes.hot_shot_list
+

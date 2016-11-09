@@ -9,6 +9,7 @@ class XkomPage(WebPage.WebPages):
 		WebPage.WebPages.__init__(self, XkomPage.webPageUrl)
 
 	def GetWebPageData(self):
+
 		try:
 			soup = BeautifulSoup(self.html, 'html.parser')
 			hotShotDiv = soup.select("#hotShot")[0]
@@ -33,3 +34,7 @@ class XkomPage(WebPage.WebPages):
 			self.productName = "-"
 			self.productUrl = "-"
 			self.imgUrl = "-"
+
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
+		return list

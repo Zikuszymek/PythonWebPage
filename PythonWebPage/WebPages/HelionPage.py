@@ -30,3 +30,7 @@ class HelionPage(WebPage.WebPages):
 			self.productName = "-"
 			self.productUrl = "-"
 			self.imgUrl = "-"
+
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
+		return list

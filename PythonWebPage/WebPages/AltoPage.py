@@ -1,12 +1,12 @@
 import WebPages.WebPages as WebPage
 from bs4 import BeautifulSoup
 
-class SatysfakcjaPage(WebPage.WebPages):
+class AltoPage(WebPage.WebPages):
 
 	webPageUrl = 'http://www.al.to/'
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, SatysfakcjaPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AltoPage.webPageUrl)
 
 	def GetWebPageData(self):
 		try:
@@ -33,4 +33,7 @@ class SatysfakcjaPage(WebPage.WebPages):
 			self.productName = "-"
 			self.productUrl = "-"
 			self.imgUrl = "-"
-        
+		
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
+		return list

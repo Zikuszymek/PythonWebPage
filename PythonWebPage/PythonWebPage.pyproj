@@ -29,6 +29,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PythonWebPage.py" />
+    <Compile Include="WebPagesFabric.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WebPages\OnePressPage.py">
       <SubType>Code</SubType>
     </Compile>
@@ -37,7 +40,7 @@
     <Compile Include="WebPages\MallPage.py" />
     <Compile Include="WebPages\MorelePage.py" />
     <Compile Include="WebPages\ProlinePage.py" />
-    <Compile Include="WebPages\SatysfakcjaPage.py" />
+    <Compile Include="WebPages\AltoPage.py" />
     <Compile Include="WebPages\SensusPage.py">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +50,7 @@
     <Compile Include="WebPages\WebPages.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WebPages\IBoodPage.py" />
     <Compile Include="WebPages\XKomPage.py" />
     <Compile Include="WebPages\__init__.py">
       <SubType>Code</SubType>
