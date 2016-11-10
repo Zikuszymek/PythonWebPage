@@ -10,12 +10,14 @@ listOfAllPages = [WebPagesFabric.xkom, WebPagesFabric.alto, WebPagesFabric.kompu
 dbManager = AllWebPages.DatabaseManager()
 #dbManager.AddAllWebPages()
 for webpage in listOfAllPages:
+	print("sprawdzanie - " + webpage)
 	resultlist = WebPagesFabric.RetuNewHotShots(webpage)
 	if resultlist != None:
 		dbhotShotList = dbManager.GetAllRecordsFromWebPage(webpage)
-		if dbhotShotList.count() > 0:
+		if not dbhotShotList.count() > 0:
+			print("nie ma wpisów")
 			for hotshot in resultlist:
-
+				dbManager.AddNewHotShot(webpage, hotshot["productName"].encode('utf-8'),hotshot["oldPrice"],hotshot["newPrice"],hotshot["productUrl"],hotshot["imgUrl"])
 		else:
 			print("nie ma")
 		#for hotshot in resultlist:

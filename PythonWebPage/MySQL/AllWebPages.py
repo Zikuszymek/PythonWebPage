@@ -1,6 +1,7 @@
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session, query, Query
 from sqlalchemy import create_engine
+import datetime
 
 
 xkom = 'x-kom'
@@ -52,8 +53,14 @@ class DatabaseManager():
 		webPage = self.session.query(self.WebPages).filter(self.WebPages.name_web_page == webPage)
 		hotShots = self.session.query(self.HotShotList).filter(self.HotShotList.web_page_id == webPage[0].id_web_page)
 		return hotShots
+
 	def AddNewHotShot(self, webPage, productName, oldPrice, newPrice, productURL, imgUrl):
+		time = datetime.datetime.now()
 		webPage = self.session.query(self.WebPages).filter(self.WebPages.name_web_page == webPage)
+		self.session.add(self.HotShotList(product_name = productName, old_price = oldPrice, new_price = newPrice,
+					web_page_id = webPage[0].id_web_page, product_url = productURL, img_url = imgUrl, last_check = time))
+		self.session.commit()
+		self.session.flush()
 
 	def IfWebPageDoesNotExistCreate(self, pageName,pageURL,isActive,category):
 		q = self.session.query(self.WebPages).filter(self.WebPages.name_web_page == pageName)
