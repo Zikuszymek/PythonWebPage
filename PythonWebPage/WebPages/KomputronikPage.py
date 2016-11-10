@@ -1,12 +1,11 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class KomputronikPage(WebPage.WebPages):
 
-	webPageUrl = 'http://www.komputronik.pl/'
-
 	def __init__(self):
-		WebPage.WebPages.__init__(self, KomputronikPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.komputronikURL)
 
 	def GetWebPageData(self):
 		try:

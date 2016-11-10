@@ -1,12 +1,11 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class MorelePage(WebPage.WebPages):
 
-	webPageUrl = 'https://www.morele.net/'
-
 	def __init__(self):
-		WebPage.WebPages.__init__(self, MorelePage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.moreleURL)
 
 	def GetWebPageData(self):
 		try:
@@ -34,6 +33,6 @@ class MorelePage(WebPage.WebPages):
 			self.productUrl = "-"
 			self.imgUrl = "-"
 
-			oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
-			list = (oneElement,)
-			return list
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
+		return list

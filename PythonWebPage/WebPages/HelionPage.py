@@ -1,12 +1,11 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class HelionPage(WebPage.WebPages):
 
-	webPageUrl = 'http://helion.pl/'
-
 	def __init__(self):
-		WebPage.WebPages.__init__(self, HelionPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.helionURL)
 
 	def GetWebPageData(self):
 		try:

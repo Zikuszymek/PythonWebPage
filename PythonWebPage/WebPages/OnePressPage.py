@@ -1,44 +1,35 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class OnePressPage(WebPage.WebPages):
 
-	webPageUrl = 'https://www.mall.pl/'
-
 	def __init__(self):
-		WebPage.WebPages.__init__(self, IBoodPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.onepressURL)
 
 	def GetWebPageData(self):
+		try:
+			soup = BeautifulSoup(self.html, 'html.parser')
+			self.productUrl = soup.select(".box-promotion .cover a")[0].get("href")
+			hotShotSoup = WebPage.GetParsedSoupFromURL(self.productUrl)
 
-		hotShotPageList = (OnePressPage.webPageUrl)
-		list = []
+			self.productName = hotShotSoup.select(".book_title span")[0].text
 
-		for webPageElement in hotShotPageList:
-			try:
-				soup = WebPage.GetParsedSoupFromURL(webPageElement)
-				hotShotDiv = soup.select(".primary-offer")[0]
-				hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
+			self.oldPrice = hotShotSoup.select(".price del")[0].text
+			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
 
-				self.productName = hotShotSoup.select("span")[0].text
+			self.newPrice = hotShotSoup.select(".price span")[0].text
+			self.newPrice = WebPage.GetPriceFromString(self.newPrice)
 
-				self.oldPrice = hotShotSoup.select(".old-price span")[1].text
-				self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
+			self.imgUrl = hotShotSoup.select(".book_info img")[1].get("src")
 
-				self.newPrice = hotShotSoup.select(".new-price")[0].text
-				self.newPrice = WebPage.GetPriceFromString(self.newPrice)
-		
-				self.productUrl = webPageElement
+		except Exception as ex:
+			self.oldPrice = "0"
+			self.newPrice = "0"
+			self.productName = "-"
+			self.productUrl = "-"
+			self.imgUrl = "-"
 
-				self.imgUrl = 'http:' + hotShotSoup.select(".offer-img a img")[0].get("src")
-
-			except Exception as ex:
-				self.oldPrice = "0"
-				self.newPrice = "0"
-				self.productName = "-"
-				self.productUrl = "-"
-				self.imgUrl = "-"
-
-				oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
-				list.append(oneElement)
-
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
 		return list

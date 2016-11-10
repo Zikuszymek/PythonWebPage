@@ -1,35 +1,35 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class SensusPage(WebPage.WebPages):
 
-	webPageUrl = 'http://sensus.pl/'
-
 	def __init__(self):
-		WebPage.WebPages.__init__(self, SensusPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.sensusURL)
 
 	def GetWebPageData(self):
-		#try:
+		try:
 			soup = BeautifulSoup(self.html, 'html.parser')
-			hotShotDiv = soup.select("#hotShot")[0]
-			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
+			self.productUrl = soup.select("#box_promo_inner_nag a")[0].get("href")
+			hotShotSoup = WebPage.GetParsedSoupFromURL(self.productUrl)
 
-			self.productName = hotShotSoup.select(".product-name")[0].text
+			self.productName = hotShotSoup.select("#productName")[0].text
 
-			self.oldPrice = hotShotSoup.select(".old-price")[0].text
+			self.oldPrice = hotShotSoup.select(".price del")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
 
-			self.newPrice = hotShotSoup.select(".new-price")[0].text
+			self.newPrice = hotShotSoup.select(".price span")[0].text
 			self.newPrice = WebPage.GetPriceFromString(self.newPrice)
-		
-			self.productUrl = self.webUrl
 
-			self.imgUrl = hotShotSoup.select(".img-responsive")[0]
-			self.imgUrl = self.imgUrl.get('src')
+			self.imgUrl = hotShotSoup.select(".book_info img")[1].get("src")
 
-		#except Exception as ex:
-			#self.oldPrice = "0"
-			#self.newPrice = "0"
-			#self.productName = "-"
-			#self.productUrl = "-"
-			#self.imgUrl = "-"
+		except Exception as ex:
+			self.oldPrice = "0"
+			self.newPrice = "0"
+			self.productName = "-"
+			self.productUrl = "-"
+			self.imgUrl = "-"
+
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
+		return list

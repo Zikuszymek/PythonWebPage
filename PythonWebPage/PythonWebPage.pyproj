@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MySQL\Alchemy.py">
+    <Compile Include="MySQL\AllWebPages.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MySQL\__init__.py">

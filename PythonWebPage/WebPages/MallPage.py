@@ -1,12 +1,11 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class MallPage(WebPage.WebPages):
 
-	webPageUrl = 'https://www.mall.pl/'
-
 	def __init__(self):
-		WebPage.WebPages.__init__(self, MallPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.mallURL)
 
 	def GetWebPageData(self):
 

@@ -1,12 +1,12 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class AltoPage(WebPage.WebPages):
 
-	webPageUrl = 'http://www.al.to/'
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AltoPage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.altoURL)
 
 	def GetWebPageData(self):
 		try:

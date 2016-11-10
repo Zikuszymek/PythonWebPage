@@ -1,9 +1,10 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class IBoodPage(WebPage.WebPages):
 
-	webPageUrl = 'http://www.ibood.com/pl/pl/'
+	webPageUrl = AllWebPages.iboodURL
 	webPageUrl2 = 'http://www.ibood.com/home-living-pl/pl/'
 	webPageUrl3 = 'http://www.ibood.com/sports-fashion-pl/pl/'
 	webPAgeUrl4	= 'http://www.ibood.com/extra-pl/pl/'

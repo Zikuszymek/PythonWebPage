@@ -6,6 +6,9 @@ import WebPages.KomputronikPage as KomputronikPage
 import WebPages.HelionPage as HelionPage
 import WebPages.IBoodPage as IBoodPage
 import WebPages.MallPage as MallPage
+import WebPages.OnePressPage as OnePressPage
+import WebPages.SensusPage as SensusPage
+import WebPages.SeptemPage as SeptemPage
 import WebPages
 
 xkom = "x-kom"

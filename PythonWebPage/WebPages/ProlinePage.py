@@ -1,13 +1,12 @@
 import WebPages.WebPages as WebPage
+import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class ProlinePage(WebPage.WebPages):
-
-	webPageUrl = 'https://proline.pl/'
 	imgUrlPrevix = "https://proline.pl/pic/"
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, ProlinePage.webPageUrl)
+		WebPage.WebPages.__init__(self, AllWebPages.prolineURL)
 
 	def GetWebPageData(self):
 		try:
@@ -28,7 +27,7 @@ class ProlinePage(WebPage.WebPages):
 
 			self.productUrl = hotShotSoup.select(".fotka")[0].get("href")
 
-			self.imgUrl = imgUrlPrevix + hotShotSoup.select(".fotka img")[0].get("src")
+			self.imgUrl = ProlinePage.imgUrlPrevix + hotShotSoup.select(".fotka img")[0].get("src")
 
 		except Exception as ex:
 			print("error")
@@ -37,3 +36,7 @@ class ProlinePage(WebPage.WebPages):
 			self.productName = "-"
 			self.productUrl = "-"
 			self.imgUrl = "-"
+
+		oneElement = WebPage.CreateSingleDictionary(self.productName, self.oldPrice, self.newPrice, self.imgUrl, self.productUrl)
+		list = (oneElement,)
+		return list
