@@ -38,7 +38,7 @@ class DatabaseManager():
 
 	def __init__(self):
 		Base = automap_base()
-		dbAdress = 'mysql+pymysql://ziku_hotshot:moniqe21@ziku.ayz.pl:3306/ziku_hotshot'
+		dbAdress = 'mysql+pymysql://ziku_hotshot:moniqe21@ziku.ayz.pl:3306/ziku_hotshot?charset=utf8'
 		engine = create_engine(dbAdress,echo=False)
 
 		Base.prepare(engine, reflect=True)
@@ -58,6 +58,14 @@ class DatabaseManager():
 		time = datetime.datetime.now()
 		webPage = self.session.query(self.WebPages).filter(self.WebPages.name_web_page == webPage)
 		self.session.add(self.HotShotList(product_name = productName, old_price = oldPrice, new_price = newPrice,
+					web_page_id = webPage[0].id_web_page, product_url = productURL, img_url = imgUrl, last_check = time))
+		self.session.commit()
+		self.session.flush()
+
+	def UpgradeExistingHotShot(self, hotShotId, webPage, productName, oldPrice, newPrice, productURL, imgUrl):
+		time = datetime.datetime.now()
+		webPage = self.session.query(self.WebPages).filter(self.WebPages.name_web_page == webPage)
+		self.session.merge(self.HotShotList(id_hot_shot = hotShotId, product_name = productName, old_price = oldPrice, new_price = newPrice,
 					web_page_id = webPage[0].id_web_page, product_url = productURL, img_url = imgUrl, last_check = time))
 		self.session.commit()
 		self.session.flush()

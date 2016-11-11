@@ -9,43 +9,32 @@ import WebPages.MallPage as MallPage
 import WebPages.OnePressPage as OnePressPage
 import WebPages.SensusPage as SensusPage
 import WebPages.SeptemPage as SeptemPage
+import MySQL.AllWebPages as Pages
 import WebPages
-
-xkom = "x-kom"
-alto = "alto"
-komputronik = "komputronik"
-proline = "proline"
-morele = "morele"
-helion = "helion"
-mall = "mall"
-ibood = "ibood"
-onepress = "one press"
-sensus = "sensus"
-septem = "septem"
 
 def RetuNewHotShots(selectedPage):
 
-	if selectedPage == xkom:
+	if selectedPage == Pages.xkom:
 		hotShotsCollection = WebPages.XKomPage.XkomPage()
-	elif selectedPage == alto:
+	elif selectedPage == Pages.alto:
 		hotShotsCollection = WebPages.AltoPage.AltoPage()
-	elif selectedPage == komputronik:
+	elif selectedPage == Pages.komputronik:
 		hotShotsCollection = WebPages.KomputronikPage.KomputronikPage()
-	elif selectedPage == proline:
+	elif selectedPage == Pages.proline:
 		hotShotsCollection = WebPages.ProlinePage.ProlinePage()
-	elif selectedPage == morele:
+	elif selectedPage == Pages.morele:
 		hotShotsCollection = WebPages.MorelePage.MorelePage()
-	elif selectedPage == helion:
+	elif selectedPage == Pages.helion:
 		hotShotsCollection = WebPages.HelionPage.HelionPage()
-	elif selectedPage == mall:
+	elif selectedPage == Pages.mall:
 		hotShotsCollection = WebPages.MallPage.MallPage()
-	elif selectedPage == ibood:
+	elif selectedPage == Pages.ibood:
 		hotShotsCollection = WebPages.IBoodPage.IBoodPage()
-	elif selectedPage == onepress:
+	elif selectedPage == Pages.onepress:
 		hotShotsCollection = WebPages.OnePressPage.OnePressPage()
-	elif selectedPage == sensus:
+	elif selectedPage == Pages.sensus:
 		hotShotsCollection = WebPages.SensusPage.SensusPage()
-	elif selectedPage == septem:
+	elif selectedPage == Pages.septem:
 		hotShotsCollection = WebPages.SeptemPage.SeptemPage()
 	
 	if hotShotsCollection != None:

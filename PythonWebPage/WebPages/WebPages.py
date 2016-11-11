@@ -34,12 +34,14 @@ def GetParsedSoupFromURL(providedURL):
 	return BeautifulSoup(html, 'html.parser')
 
 def GetPriceFromString(priceString):
+
 	firstChar = 'z'
 	secondChar = ','
 	if firstChar in priceString:
 		index = priceString.find(firstChar)
 		if index >= 0:
 			priceString = priceString[0:index - 1]
+
 	if secondChar in priceString:
 		index = priceString.find(secondChar)
 		if index >= 0:
@@ -47,6 +49,7 @@ def GetPriceFromString(priceString):
 
 	priceString = priceString.replace(" ","")
 	priceString = priceString.replace("\\s+","")
+	priceString = priceString.replace(".","")
 
 	return priceString
 
