@@ -2,6 +2,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session, query, Query
 from sqlalchemy import create_engine
 import datetime
+import sensitive
 
 
 xkom = 'x-kom'
@@ -38,7 +39,7 @@ class DatabaseManager():
 
 	def __init__(self):
 		Base = automap_base()
-		dbAdress = 'mysql+pymysql://ziku_hotshot:moniqe21@ziku.ayz.pl:3306/ziku_hotshot?charset=utf8'
+		dbAdress = sensitive.dbconnection
 		engine = create_engine(dbAdress,echo=False)
 
 		Base.prepare(engine, reflect=True)
