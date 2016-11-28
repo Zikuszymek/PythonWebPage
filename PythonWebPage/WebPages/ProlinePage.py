@@ -3,7 +3,7 @@ import MySQL.AllWebPages as AllWebPages
 from bs4 import BeautifulSoup
 
 class ProlinePage(WebPage.WebPages):
-	imgUrlPrevix = "https://proline.pl/pic/"
+	imgUrlPrevix = "https://proline.pl"
 
 	def __init__(self):
 		WebPage.WebPages.__init__(self, AllWebPages.prolineURL)

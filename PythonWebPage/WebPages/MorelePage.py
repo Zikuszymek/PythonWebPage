@@ -14,6 +14,7 @@ class MorelePage(WebPage.WebPages):
 			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
 
 			self.productName = hotShotSoup.select(".product-name a")[0].text
+			self.productName = self.productName.replace("\n","");
 
 			self.oldPrice = hotShotSoup.select(".product-price span")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

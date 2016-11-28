@@ -25,9 +25,6 @@
     <Compile Include="sensitive.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TEST.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="MySQL\AllWebPages.py">
       <SubType>Code</SubType>
     </Compile>
