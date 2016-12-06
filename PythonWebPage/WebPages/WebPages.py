@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
+import re
 
 class WebPages(object):
 
@@ -47,9 +48,11 @@ def GetPriceFromString(priceString):
 		if index >= 0:
 			priceString = priceString[0:index]
 
-	priceString = priceString.replace(" ","")
 	priceString = priceString.replace("\\s+","")
 	priceString = priceString.replace(".","")
+	priceString = priceString.replace(" ","")
+	priceString = re.sub(r'\s+','',priceString)
+	print(priceString)
 
 	return priceString
 
