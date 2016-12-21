@@ -2,10 +2,9 @@ import MySQL.AllWebPages as AllWebPages
 import WebPagesFabric
 
 
-#listOfAllPages = [AllWebPages.xkom, AllWebPages.alto, AllWebPages.komputronik, AllWebPages.morele,
-#				  AllWebPages.proline, AllWebPages.helion, AllWebPages.onepress, AllWebPages.sensus,
-#				  AllWebPages.septem, AllWebPages.ibood, AllWebPages.mall]
-listOfAllPages = [AllWebPages.othertees,]
+listOfAllPages = [AllWebPages.xkom, AllWebPages.alto, AllWebPages.komputronik, AllWebPages.morele,
+				  AllWebPages.proline, AllWebPages.helion, AllWebPages.onepress, AllWebPages.sensus,
+				  AllWebPages.septem, AllWebPages.ibood, AllWebPages.mall,AllWebPages.othertees]
 
 dbManager = AllWebPages.DatabaseManager()
 for webpage in listOfAllPages:
