@@ -9,6 +9,7 @@ import WebPages.MallPage as MallPage
 import WebPages.OnePressPage as OnePressPage
 import WebPages.SensusPage as SensusPage
 import WebPages.SeptemPage as SeptemPage
+import WebPages.Othertees as Othertees
 import MySQL.AllWebPages as Pages
 import WebPages
 
@@ -36,6 +37,8 @@ def RetuNewHotShots(selectedPage):
 		hotShotsCollection = WebPages.SensusPage.SensusPage()
 	elif selectedPage == Pages.septem:
 		hotShotsCollection = WebPages.SeptemPage.SeptemPage()
+	elif selectedPage == Pages.othertees:
+		hotShotsCollection = WebPages.Othertees.OtherteesPage()
 	
 	if hotShotsCollection != None:
 		return hotShotsCollection.GetWebPageData()

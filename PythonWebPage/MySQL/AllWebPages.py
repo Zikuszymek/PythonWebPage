@@ -16,6 +16,7 @@ ibood = 'ibood'
 onepress = 'one press'
 sensus = 'sensus'
 septem = 'septem'
+othertees = 'othertees'
 
 xkomURL = 'http://www.x-kom.pl/'
 altoURL = 'http://www.al.to/'
@@ -28,10 +29,12 @@ iboodURL = 'http://www.ibood.com/pl/pl/'
 onepressURL = 'http://onepress.pl/'
 sensusURL = 'http://sensus.pl/'
 septemURL = 'http://septem.pl/'
+otherteesURL = 'http://www.othertees.com/?lang=pl'
 
 categoryElectonics = 'electronics'
 categoryBooks = 'books'
 categoryOther = 'other'
+categoryClothes = 'clothes'
 
 categoryList = [categoryElectonics,categoryBooks,categoryOther]
 
@@ -110,3 +113,4 @@ class DatabaseManager():
 		self.IfWebPageDoesNotExistCreate(helion, helionURL, True, categoryBooks)
 		self.IfWebPageDoesNotExistCreate(sensus, sensusURL, True, categoryBooks)
 		self.IfWebPageDoesNotExistCreate(septem, septem, True, categoryBooks)
+		self.IfWebPageDoesNotExistCreate(othertees, otherteesURL, True, categoryClothes)

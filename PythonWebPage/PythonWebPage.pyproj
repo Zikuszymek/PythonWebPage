@@ -35,6 +35,7 @@
     <Compile Include="WebPagesFabric.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WebPages\Othertees.py" />
     <Compile Include="WebPages\OnePressPage.py">
       <SubType>Code</SubType>
     </Compile>
