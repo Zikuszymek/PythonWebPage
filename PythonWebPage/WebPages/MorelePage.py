@@ -1,11 +1,11 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class MorelePage(WebPage.WebPages):
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.moreleURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.moreleURL)
 
 	def GetWebPageData(self):
 		try:
@@ -14,7 +14,7 @@ class MorelePage(WebPage.WebPages):
 			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
 
 			self.productName = hotShotSoup.select(".product-name a")[0].text
-			self.productName = self.productName.replace("\n","");
+			self.productName = WebPage.GetNameFromString(self.productName)
 
 			self.oldPrice = hotShotSoup.select(".product-price span")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

@@ -1,11 +1,11 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class HelionPage(WebPage.WebPages):
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.helionURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.helionURL)
 
 	def GetWebPageData(self):
 		try:
@@ -14,6 +14,7 @@ class HelionPage(WebPage.WebPages):
 			hotShotSoup = WebPage.GetParsedSoupFromURL(self.productUrl)
 
 			self.productName = hotShotSoup.select(".book-details h1")[0].text
+			self.productName = WebPage.GetNameFromString(self.productName)
 
 			self.oldPrice = hotShotSoup.select(".book-type-price del")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

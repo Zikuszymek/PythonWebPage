@@ -1,11 +1,11 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class SeptemPage(WebPage.WebPages):
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.septemURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.septemURL)
 
 	def GetWebPageData(self):
 		try:
@@ -14,6 +14,7 @@ class SeptemPage(WebPage.WebPages):
 			hotShotSoup = WebPage.GetParsedSoupFromURL(self.productUrl)
 
 			self.productName = hotShotSoup.select("#productName")[0].text
+			self.productName = WebPage.GetNameFromString(self.productName)
 
 			self.oldPrice = hotShotSoup.select(".price del")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)
@@ -21,7 +22,8 @@ class SeptemPage(WebPage.WebPages):
 			self.newPrice = hotShotSoup.select(".price span")[0].text
 			self.newPrice = WebPage.GetPriceFromString(self.newPrice)
 
-			self.imgUrl = hotShotSoup.select(".book_info img")[1].get("src")
+			self.imgUrl = hotShotSoup.select(".book_info .left img")[1].get("src")
+
 
 		except Exception as ex:
 			self.oldPrice = "0"

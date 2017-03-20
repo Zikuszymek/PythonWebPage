@@ -10,7 +10,7 @@ import WebPages.OnePressPage as OnePressPage
 import WebPages.SensusPage as SensusPage
 import WebPages.SeptemPage as SeptemPage
 import WebPages.Othertees as Othertees
-import MySQL.AllWebPages as Pages
+import MySQL.DatabaseManager as Pages
 import WebPages
 
 def RetuNewHotShots(selectedPage):

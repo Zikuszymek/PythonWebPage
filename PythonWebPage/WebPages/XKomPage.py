@@ -1,20 +1,22 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class XkomPage(WebPage.WebPages):
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.xkomURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.xkomURL)
 
 	def GetWebPageData(self):
 
 		try:
 			soup = BeautifulSoup(self.html, 'html.parser')
+
 			hotShotDiv = soup.select("#hotShot")[0]
 			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
 
 			self.productName = hotShotSoup.select(".product-name")[0].text
+			self.productName = WebPage.GetNameFromString(self.productName)
 
 			self.oldPrice = hotShotSoup.select(".old-price")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

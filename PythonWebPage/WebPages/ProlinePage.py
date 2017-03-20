@@ -1,12 +1,12 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class ProlinePage(WebPage.WebPages):
 	imgUrlPrevix = "https://proline.pl"
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.prolineURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.prolineURL)
 
 	def GetWebPageData(self):
 		try:
@@ -15,6 +15,7 @@ class ProlinePage(WebPage.WebPages):
 			hotShotSoup = BeautifulSoup(str(hotShotDiv.encode('utf-8')),'html.parser')
 
 			self.productName = hotShotSoup.select("a")[1].text
+			self.productName = WebPage.GetNameFromString(self.productName)
 
 			tableInfo = hotShotSoup.select("#karta")
 			tableInfo = BeautifulSoup(str(tableInfo),'html.parser')

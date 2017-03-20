@@ -1,12 +1,12 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class AltoPage(WebPage.WebPages):
 
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.altoURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.altoURL)
 
 	def GetWebPageData(self):
 		try:
@@ -15,6 +15,7 @@ class AltoPage(WebPage.WebPages):
 			hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
 
 			self.productName = hotShotSoup.select(".product-name")[0].text
+			self.productName = WebPage.GetNameFromString(self.productName)
 
 			self.oldPrice = hotShotSoup.select(".old-price")[0].text
 			self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

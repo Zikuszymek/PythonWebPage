@@ -1,11 +1,11 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class MallPage(WebPage.WebPages):
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.mallURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.mallURL)
 
 	def GetWebPageData(self):
 
@@ -23,6 +23,7 @@ class MallPage(WebPage.WebPages):
 				if soupElement.find('a'):
 					try:
 						self.productName = soupElement.select('a')[1].text
+						self.productName = WebPage.GetNameFromString(self.productName)
 
 						self.oldPrice = soupElement.select("del")[0].text
 						self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

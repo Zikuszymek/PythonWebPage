@@ -1,5 +1,5 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 import re
 from bs4 import BeautifulSoup
 
@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 class OtherteesPage(WebPage.WebPages):
 
 	def __init__(self):
-		WebPage.WebPages.__init__(self, AllWebPages.otherteesURL)
+		WebPage.WebPages.__init__(self, DatabaseManager.otherteesURL)
 
 	def GetWebPageData(self):
 
@@ -18,15 +18,18 @@ class OtherteesPage(WebPage.WebPages):
 		list.append(emptyElement)
 		list.append(emptyElement)
 
-		#	try:
-		soup = BeautifulSoup(self.html, 'html.parser')
+		soup = WebPage.GetParsedSoupForOthertees()
+		#Referer http://www.othertees.com/?lang=pl
 		specialList = soup.findAll('div', id=re.compile('^design-\d+$'))
 
 		for indexOf, othertee in enumerate(specialList):
 			try:
 				hotShotSoup = BeautifulSoup(str(othertee),'html.parser')
+				#print(hotShotSoup)
 
 				self.productName = hotShotSoup.select(".product-options h4")[0].text
+				self.productName = WebPage.GetNameFromString(self.productName)
+
 
 				przez = "przez"
 				if przez in self.productName:

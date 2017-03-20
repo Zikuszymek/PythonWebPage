@@ -1,10 +1,10 @@
 import WebPages.WebPages as WebPage
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 from bs4 import BeautifulSoup
 
 class IBoodPage(WebPage.WebPages):
 
-	webPageUrl = AllWebPages.iboodURL
+	webPageUrl = DatabaseManager.iboodURL
 	webPageUrl2 = 'http://www.ibood.com/home-living-pl/pl/'
 	webPageUrl3 = 'http://www.ibood.com/sports-fashion-pl/pl/'
 	webPAgeUrl4	= 'http://www.ibood.com/extra-pl/pl/'
@@ -24,6 +24,7 @@ class IBoodPage(WebPage.WebPages):
 				hotShotSoup = BeautifulSoup(str(hotShotDiv),'html.parser')
 
 				self.productName = hotShotSoup.select("span")[0].text
+				self.productName = WebPage.GetNameFromString(self.productName)
 
 				self.oldPrice = hotShotSoup.select(".old-price span")[1].text
 				self.oldPrice = WebPage.GetPriceFromString(self.oldPrice)

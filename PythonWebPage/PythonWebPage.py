@@ -1,12 +1,12 @@
-import MySQL.AllWebPages as AllWebPages
+import MySQL.DatabaseManager as DatabaseManager
 import WebPagesFabric
 
 
-listOfAllPages = [AllWebPages.xkom, AllWebPages.alto, AllWebPages.komputronik, AllWebPages.morele,
-				  AllWebPages.proline, AllWebPages.helion, AllWebPages.onepress, AllWebPages.sensus,
-				  AllWebPages.septem, AllWebPages.ibood, AllWebPages.mall,AllWebPages.othertees]
+listOfAllPages = [DatabaseManager.xkom, DatabaseManager.alto, DatabaseManager.komputronik, DatabaseManager.morele,
+				  DatabaseManager.proline, DatabaseManager.helion, DatabaseManager.onepress, DatabaseManager.sensus,
+				  DatabaseManager.septem, DatabaseManager.ibood, DatabaseManager.mall, DatabaseManager.othertees]
 
-dbManager = AllWebPages.DatabaseManager()
+dbManager = DatabaseManager.DatabaseManager()
 for webpage in listOfAllPages:
 	print("\nchecking - " + webpage)
 	resultlist = WebPagesFabric.RetuNewHotShots(webpage)
